@@ -14,8 +14,10 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
 using API.Controllers;
-using Infrastructure.Data;
 
+using Infrastructure;
+using Core.Interfaces;
+using Infrastructure.Data;
 
 namespace API
 {
@@ -28,8 +30,9 @@ namespace API
         }
       public void ConfigureServices(IServiceCollection services)
       {
+            services.AddScoped<IProductRepository, ProductRepository>();
            services.AddControllers();
-           services.AddDbContext<StoreContex>(x=>
+           services.AddDbContext<StoreContext>(x=>
            x.UseSqlite(_config.GetConnectionString("DefaultConnection"))
            );
       }
