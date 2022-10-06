@@ -9,14 +9,15 @@ namespace Infrastructure.Data
         public StoreContext(DbContextOptions<StoreContext> options) : base(options)
         {
         }
-        public DbSet<Product> Products { get; set; }= default!;
-        public DbSet<ProductBrand> ProductBrends { get; set; }= default!;
-        public DbSet<ProductType> ProductTypes { get; set; }= default!;
-        protected override void OnModelCreating(ModelBuilder modelBuilder) 
+
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ProductBrand> ProductBrands { get; set; }
+        public DbSet<ProductType> ProductTypes { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
-        
 }
